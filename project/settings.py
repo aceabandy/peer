@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-50^yv5ub3vh3ed#od!j5@n0&b^c1s1f!b4$%fz3+5-44s@3%gn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.peerbank.online
+','peerbank.online']
 
 
 # Application definition
