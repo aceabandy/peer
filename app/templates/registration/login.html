@@ -1,0 +1,264 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PeerBank</title>
+    
+        <!-- Meta Description -->
+        <meta name="description" content="Welcome to PeerBank" />
+      
+        <!-- Meta Keywords -->
+        <meta name="keywords" content="PeerBank" />
+      
+        <!-- URL Structure -->
+        <link rel="canonical" href="https://peerbank.online/" />
+        <link rel="icon" type="image/x-icon" href="https://i.ibb.co/9gGn11S/peerlogo-2.png">
+        <!-- Meta Description -->
+        <meta name="description" content="Welcome to PeerBank" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <!-- Meta Keywords -->
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f3b99b4317.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'assets/css/templatemo-finance-business.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.css' %} ">
+    
+
+    </head>
+<body style="color: white;font-family: 'Roboto', sans-serif;">
+    <style>
+        #container1{
+            display: flex;
+        }
+        
+        /* Buttons Styling */
+.btn-rounded {
+    border-radius: 30px; /* Rounded corners */
+    font-weight: 600; /* Bold text */
+     /* Uppercase text */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: all 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+/* Primary Button */
+.btn-primary {
+    background-color: #007bff; /* Bootstrap primary color */
+    border-color: #007bff;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    border-color: #0056b3;
+}
+
+/* Outline Button */
+.btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+    background-color: transparent;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Responsive Padding */
+.btn {
+    padding: 10px 20px; /* Adjust spacing for button text */
+}
+
+@media (max-width: 576px) {
+    .btn {
+        padding: 8px 16px; /* Smaller padding for smaller screens */
+    }
+}
+.card {
+            height: 300px; /* Uniform height for all cards */
+        }
+        .card img {
+            height: 100%; /* Make image cover the card height */
+            object-fit: cover; /* Ensure the image scales properly */
+        }
+  
+    .alert {
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Progress Bar */
+    .message-progress-bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background-color: rgba(0, 0, 0, 0.1); /* Background for progress bar */
+        animation: shrink-progress-bar 5s linear forwards;
+    }
+
+    @keyframes shrink-progress-bar {
+        from {
+            width: 100%;
+        }
+        to {
+            width: 0%;
+        }
+    }
+    
+    </style>
+   
+           
+    <nav  class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="{% url 'index' %}"><h2 style="color: black;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">PEERBANK</h2></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+             
+              <li class="nav-item">
+                <a style="color: black;" class="nav-link" href="{% url 'signup' %}">Sign-Up</a>
+              </li>
+              <li class="nav-item">
+                <a style="color: black;" class="nav-link" href="{% url 'login' %}">Login</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>    
+     <br>
+     <br>
+    <section class="justify-content-center align-items-center" style="background-image: linear-gradient(#F5F5F5, white);">
+        <br>
+        <br>
+        
+        <div class="container container-border">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8 col-sm-10">
+                    <!-- Form -->
+                    <form action="." method="POST" class="p-4 shadow bg-white rounded">
+                        {% csrf_token %}
+                        <!-- Display messages -->
+                        {% if messages %}
+                        <div id="message-container">
+                            {% for message in messages %}
+                            <div class="alert 
+                                {% if message.tags == 'success' %}alert-success{% elif message.tags == 'error' %}alert-danger{% else %}alert-info{% endif %} 
+                                alert-dismissible fade show position-relative" role="alert">
+                                {{ message }}
+                                
+                                <!-- Progress Bar -->
+                                <div class="message-progress-bar"></div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        
+                        <div class="text-danger">
+                        {{ form.non_field_errors }}
+                        </div>
+                        <!-- Username -->
+                        <div class="mb-3">
+                            <label for="id_username" class="form-label" style="color: #1d3557;">Username</label>
+                            <input type="text" name="username" id="id_username" class="form-control" required>
+                              <div class="text-danger">
+                            {{ form.username.errors }}
+                               </div>
+                        </div>
+                   <!-- Password Field with Toggle -->
+                        <div class="mb-3 position-relative">
+                            <label for="id_password" class="form-label" style="color: #1d3557;">Password</label>
+                            <div class="input-group">
+                                <input 
+                                    type="password" 
+                                    name="password" 
+                                    id="id_password" 
+                                    class="form-control" 
+                                    placeholder="Enter your password" 
+                                    required>
+                                <button style="height: 38px;"  type="button" class="btn btn-outline-secondary toggle-password" tabindex="-1">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="text-danger">
+                                {{ form.password.errors }}
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success w-100">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Links -->
+            <div class="text-center mt-3">
+                <a class="text-success" href="{% url 'password_reset' %}">Forgot your password?</a>
+            </div>
+            <div class="text-center mt-2">
+                <span style="color: black;">Don't have an account? <a href="{% url 'signup' %}" class="text-success" style=" font-weight: bold;">Sign up here</a></span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- JavaScript to Auto-Remove Message -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const messageContainer = document.getElementById('message-container');
+            if (messageContainer) {
+                setTimeout(() => messageContainer.remove(), 5000); // Remove after animation ends (5 seconds)
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const togglePasswordBtn = document.querySelector('.toggle-password');
+            const passwordInput = document.getElementById('id_password');
+    
+            togglePasswordBtn.addEventListener('click', () => {
+                const icon = togglePasswordBtn.querySelector('i');
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    passwordInput.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            });
+        });
+    </script>
+    
+<!--<form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="mb-3">
+            <label for="id_username" style="color: white;">Username</label>
+            <input type="text" name="username" id="id_username" class="form-control">
+            {{ form.username.errors }}
+        </div>
+        <div class="mb-3">
+            <label for="id_username" style="color: white;">Username</label>
+            <input type="password" name="password" id="id_password" class="form-control">
+            {{ form.password.errors }}
+        </div>
+        <button type="submit" class="btn btn-outline-light">Login</button>
+    </form>-->
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- Additional Scripts -->
+<script src="{% static 'assets/js/custom.js' %}"></script>
+<script src="{% static 'assets/js/owl.js' %}"></script>
+<script src="{% static 'assets/js/slick.js' %}"></script>
+<script src="{% static 'assets/js/accordions.js' %}"></script>
+</body>
+</html>
