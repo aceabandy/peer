@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %} 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -167,7 +168,7 @@
             <div class="card shadow border-0 mb-4 text-center">
                 <div class="card-body">
                     <h4 class="text-primary">Account Balance</h4>
-                    <h2 class="display-6 text-success">${{ request.user.wallet.formatted_balance }}</h2>
+                    <h2 class="display-6 text-success">${{ request.user.wallet.formatted_balance|intcomma }}</h2>
                     <!-- Deposit Modal Trigger -->
 <button id="depositBtn" class="btn btn-success w-100 my-2" data-bs-toggle="modal" data-bs-target="#depositModal">Deposit</button>
 
